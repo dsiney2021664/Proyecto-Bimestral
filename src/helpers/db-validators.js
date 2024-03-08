@@ -44,3 +44,4 @@ export const existeProductById = async (id = '') => {
         throw new Error(`El ID: ${id} No existe`);
     }
 }
+

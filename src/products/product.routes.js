@@ -2,6 +2,8 @@ import { Router } from "express";
 import { check } from "express-validator";
 import {
     getProduct,
+    getProductOutOfStock,
+    getMostSelledProducts,
     createProduct,
     getProductById,
     updateProduct,
@@ -11,6 +13,7 @@ import {
     existeCategoryById,
 } from "../helpers/db-validators.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
+import {tieneRole} from "../middlewares/validar-roles.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
 const router = Router();
@@ -19,8 +22,17 @@ router.get("/", [
     validarCampos
 ], getProduct);
 
+router.get("/outOfStock", [
+    validarCampos
+], getProductOutOfStock);
+
+router.get("/mostSelledProducts", [
+    validarCampos
+], getMostSelledProducts);
+
 router.post("/", [
     validarJWT,
+    tieneRole('ADMIN_ROLE'),
     check("category", "El ID de categoría es obligatorio").isMongoId(),
     check("category").custom(existeCategoryById),
     check("name", "El nombre del producto es obligatorio").notEmpty(),
@@ -30,21 +42,20 @@ router.post("/", [
 ], createProduct);
 
 router.get("/:id", [
-    validarJWT,
-    check("id", "No es un ID de producto válido").isMongoId(),
     validarCampos
 ], getProductById);
 
 router.put("/:id", [
     validarJWT,
-    check("id", "No es un ID de producto válido").isMongoId(),
-    check("category", "No se puede modificar la categoría").not().exists(),
-    check("name", "No se puede modificar el nombre").not().exists(),
+    tieneRole('ADMIN_ROLE'),
+    check("category", "El ID de categoría es obligatorio").isMongoId(),
+    check("category").custom(existeCategoryById),
     validarCampos
 ], updateProduct);
 
 router.delete("/:id", [
     validarJWT,
+    tieneRole('ADMIN_ROLE'),
     check("id", "No es un ID de producto válido").isMongoId(),
     validarCampos
 ], deleteProduct);

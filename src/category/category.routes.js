@@ -10,6 +10,7 @@ import {
     existeCategoryById,
 } from "../helpers/db-validators.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
+import { tieneRole } from "../middlewares/validar-roles.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
 const router = Router();
@@ -20,26 +21,31 @@ router.get("/",
 
 router.post("/",
     [
-        validarJWT
+        validarJWT,
+        tieneRole('ADMIN_ROLE'),
     ],
     createCategory);
 
 router.put("/:id",
     [
+        validarJWT,
+        tieneRole('ADMIN_ROLE'),
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeCategoryById),
         validarCampos,
-        validarJWT
+        
     ],
     updateCategory);
 
 router.delete(
     "/:id",
     [
+        validarJWT,
+        tieneRole('ADMIN_ROLE'),
         check("id", "No es un ID válido").isMongoId(),
         check("id").custom(existeCategoryById),
         validarCampos,
-        validarJWT
+        
     ],
     deleteCategory);
 

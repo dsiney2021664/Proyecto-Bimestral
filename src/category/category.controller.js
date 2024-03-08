@@ -1,5 +1,6 @@
 import { response, request } from "express";
 import Category from './category.model.js'
+import Product from '../products/product.model.js'
 
 export const getCategory = async (req = request, res = response) => {
     const { limite, desde } = req.query;
@@ -20,74 +21,53 @@ export const getCategory = async (req = request, res = response) => {
 
 export const createCategory = async (req, res) => {
     const { name } = req.body;
-    const authenticatedUser = req.user;
+    const category = new Category({ name })
+    await category.save();
 
-    try {
-        if (authenticatedUser.role !== 'ADMIN_ROLE') {
-            return res.status(403).json({
-                msg: "Solo el ADMIN puede agregar una nueva categoria"
-            });
-        }
-
-        const category = new Category({ name })
-        await category.save();
-
-        res.status(200).json({
-            category,
-        });
-    } catch (e) {
-        console.error(e);
-        res.status(500).json({ msg: 'Ocurrió un error al crear la categoría' });
-    }
+    res.status(200).json({
+        category,
+    });
 }
 
 
 export const updateCategory = async (req, res = response) => {
     const { id } = req.params;
-    const authenticatedUser = req.user;
+    const { _id, ...rest } = req.body;
 
-    try {
-        if (authenticatedUser.role !== 'ADMIN_ROLE') {
-            return res.status(403).json({
-                msg: "Solo el ADMIN puede editar una categoria"
-            });
-        }
+    await Category.findByIdAndUpdate(id, rest);
 
-        const { _id, ...rest } = req.body;
-        await Category.findByIdAndUpdate(id, rest);
-       
-        const category = await Category.findOne({ _id: id });
+    const category = await Category.findOne({ _id: id });
 
-        res.status(200).json({
-            msg: 'Usuario Actualizado',
-            category,
-        });
-    }catch (e) {
-        console.error(e);
-        res.status(500).json({ msg: 'Ocurrió un error al crear la categoría' });
-    }
-
+    res.status(200).json({
+        msg: 'Usuario Actualizado',
+        category,
+    });
 }
 
 export const deleteCategory = async (req, res) => {
     const { id } = req.params;
-    const authenticatedUser = req.user;
 
     try {
-        if (authenticatedUser.role !== 'ADMIN_ROLE') {
-            return res.status(403).json({
-                msg: "Solo el ADMIN puede eliminar categorías"
+        const categoryToDelete = await Category.findById(id);
+
+        if (!categoryToDelete) {
+            return res.status(404).json({
+                msg: 'La categoría no existe'
             });
         }
-        const category = await Category.findByIdAndDelete(id);
+        const defaultCategory  = await Category.findOne({ name: 'Default' });
 
-        if (!category) {
-            return res.status(404).json({ msg: "La categoría no existe" });
+        if (!defaultCategory) {
+            return res.status(404).json({ msg: 'La categoría "Default" no existe' });
         }
 
+        await Product.updateMany({ category: id }, { category: defaultCategory._id });
+
+        await Category.findByIdAndDelete(id);
+
         res.status(200).json({ msg: 'Categoría eliminada' });
-    } catch (error) {
-        console.error(error);
+    } catch (e) {
+        console.error(e);
         res.status(500).json({ msg: 'Ocurrió un error al eliminar la categoría' });
     }
 }
