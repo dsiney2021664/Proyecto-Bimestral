@@ -11,6 +11,7 @@ import categoryRoutes from '../src/category/category.routes.js';
 import productRoutes from '../src/products/product.routes.js'; 
 import cartRoutes from '../src/shoppingCart/cart.routes.js';
 import buyRoutes from '../src/buy/buy.routes.js';
+import billRoutes from '../src/bill/bill.routes.js';
 
 class Server {
     constructor() {
@@ -22,6 +23,7 @@ class Server {
         this.productPath = '/gestionVentas/v1/product';
         this.cartPath = '/gestionVentas/v1/cart';
         this.buyPath = '/gestionVentas/v1/buy';
+        this.billPath = '/gestionVentas/v1/bill';
 
 
         this.middlewares(); 
@@ -48,6 +50,7 @@ class Server {
         this.app.use(this.productPath, productRoutes);
         this.app.use(this.cartPath, cartRoutes);
         this.app.use(this.buyPath, buyRoutes);
+        this.app.use(this.billPath, billRoutes);
     }
     listen() {
         this.app.listen(this.port, () => {

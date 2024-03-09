@@ -1,0 +1,93 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Categorys",
+    "dateExported": "2024-03-09T05:47:26.715Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "69922660-8257-4071-8fb3-55381a54c4e4",
+            "colId": "fec44231-6be2-48a5-bd26-d47cb4839d55",
+            "containerId": "",
+            "name": "createCategory",
+            "url": "http://localhost:3000/gestionVentas/v1/category",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-06T22:29:53.318Z",
+            "modified": "2024-03-08T03:59:52.533Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU3ZTgzZjUyNDA2MDY3MTQwZDQzMmYiLCJpYXQiOjE3MDk4NzAzODQsImV4cCI6MTcwOTg3Mzk4NH0.Wpxs43QtL3r0LGdNrawgh993y6_6L9Y-qcHtB1jFhso"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Carros\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "2a583b76-9b19-4094-8409-2e4e0b4381ad",
+            "colId": "fec44231-6be2-48a5-bd26-d47cb4839d55",
+            "containerId": "",
+            "name": "listCaregory",
+            "url": "http://localhost:3000/gestionVentas/v1/category",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-06T22:32:33.241Z",
+            "modified": "2024-03-06T22:53:47.359Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "da662ae0-34f3-4562-8eb8-363119b2ccc2",
+            "colId": "fec44231-6be2-48a5-bd26-d47cb4839d55",
+            "containerId": "",
+            "name": "edtCategory",
+            "url": "http://localhost:3000/gestionVentas/v1/category/65e8ef7a8b4a9865708e9774",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-03-06T22:59:29.766Z",
+            "modified": "2024-03-08T01:42:51.720Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU3ZWU4M2IwMTI5NjQxMmYxYjRmYjAiLCJpYXQiOjE3MDk4NjIwNTUsImV4cCI6MTcwOTg2NTY1NX0.MzhSuzFEWGC18SYv0Dp-ewfZLEGz4iPWtmQxZ2_lIjc"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Cosmeticos\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "7bf3843a-8031-4bc1-8335-8b9af41c1149",
+            "colId": "fec44231-6be2-48a5-bd26-d47cb4839d55",
+            "containerId": "",
+            "name": "deleteCategory",
+            "url": "http://localhost:3000/gestionVentas/v1/category/65ea76c39b2f898bc18e5e64",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-03-06T23:16:36.020Z",
+            "modified": "2024-03-08T13:58:00.010Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU3ZTgzZjUyNDA2MDY3MTQwZDQzMmYiLCJpYXQiOjE3MDk5MDUxNTUsImV4cCI6MTcwOTkwODc1NX0.i05O_jbR6bjwkxerKsQ2AQHc2kXzOLPzQbI5Ekhm9hQ"
+                }
+            ],
+            "params": [],
+            "reqType": "del",
+            "tests": []
+        }
+    ]
+}

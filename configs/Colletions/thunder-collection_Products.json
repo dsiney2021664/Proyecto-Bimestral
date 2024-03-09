@@ -1,0 +1,137 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Products",
+    "dateExported": "2024-03-09T05:47:30.947Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "d38f954a-6d3f-4f41-ad4e-4af1fb46cc88",
+            "colId": "2c26773d-aee1-4709-99d3-002e31540cd2",
+            "containerId": "",
+            "name": "createProducts",
+            "url": "http://localhost:3000/gestionVentas/v1/product",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-07T00:10:39.249Z",
+            "modified": "2024-03-08T13:58:37.724Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU3ZTgzZjUyNDA2MDY3MTQwZDQzMmYiLCJpYXQiOjE3MDk5MDUxNTUsImV4cCI6MTcwOTkwODc1NX0.i05O_jbR6bjwkxerKsQ2AQHc2kXzOLPzQbI5Ekhm9hQ"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"category\": \"65ea8d3855f46d5169153d0a\",\n  \"name\": \"Corola\",\n  \"price\": 10,\n  \"quantityInStock\": 0\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "05f855e2-1446-4d22-aea3-d74b6af86654",
+            "colId": "2c26773d-aee1-4709-99d3-002e31540cd2",
+            "containerId": "",
+            "name": "listProducts",
+            "url": "http://localhost:3000/gestionVentas/v1/product",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-07T00:20:14.245Z",
+            "modified": "2024-03-07T00:21:00.732Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1b415130-d940-484e-9310-957df65aa506",
+            "colId": "2c26773d-aee1-4709-99d3-002e31540cd2",
+            "containerId": "",
+            "name": "searchProduct",
+            "url": "http://localhost:3000/gestionVentas/v1/product/65ea8f27df8fbe55ddc7f130",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-08T02:23:33.385Z",
+            "modified": "2024-03-08T15:18:32.154Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "0a0aa028-12e5-4612-8589-d5e462be3a99",
+            "colId": "2c26773d-aee1-4709-99d3-002e31540cd2",
+            "containerId": "",
+            "name": "productOutOfStock",
+            "url": "http://localhost:3000/gestionVentas/v1/product/outOfStock",
+            "method": "GET",
+            "sortNum": 35000,
+            "created": "2024-03-08T13:55:25.745Z",
+            "modified": "2024-03-08T14:42:38.872Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "9e0b2fe7-8a47-4a66-8015-de1cac0f42d3",
+            "colId": "2c26773d-aee1-4709-99d3-002e31540cd2",
+            "containerId": "",
+            "name": "mostSelledProducts",
+            "url": "http://localhost:3000/gestionVentas/v1/product/mostSelledProducts",
+            "method": "GET",
+            "sortNum": 37500,
+            "created": "2024-03-08T14:32:47.510Z",
+            "modified": "2024-03-08T14:42:43.935Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "94b2acc7-a546-4a76-9342-ae2fa6452306",
+            "colId": "2c26773d-aee1-4709-99d3-002e31540cd2",
+            "containerId": "",
+            "name": "editProducts",
+            "url": "http://localhost:3000/gestionVentas/v1/product/65eb194172d0757d2905441b",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-03-08T03:10:15.692Z",
+            "modified": "2024-03-08T21:21:58.903Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU3ZTgzZjUyNDA2MDY3MTQwZDQzMmYiLCJpYXQiOjE3MDk5MzI4ODgsImV4cCI6MTcwOTkzNjQ4OH0.74QuhHc3b648xOtxuCab_ABvooinWP5cOCv7ussaXdw"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"category\": \"65ea8d3855f46d5169153d0a\",\n  \"name\": \"Mazda\",\n  \"price\": 100,\n  \"quantityInStock\": 10\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "0f6f637c-67b5-43f7-bfe1-dce703797de8",
+            "colId": "2c26773d-aee1-4709-99d3-002e31540cd2",
+            "containerId": "",
+            "name": "deleteProducts",
+            "url": "http://localhost:3000/gestionVentas/v1/product/65ea984ca049eb5d35e5c6f6",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-03-08T13:38:23.585Z",
+            "modified": "2024-03-08T13:39:22.582Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU3ZTgzZjUyNDA2MDY3MTQwZDQzMmYiLCJpYXQiOjE3MDk5MDUxNTUsImV4cCI6MTcwOTkwODc1NX0.i05O_jbR6bjwkxerKsQ2AQHc2kXzOLPzQbI5Ekhm9hQ"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

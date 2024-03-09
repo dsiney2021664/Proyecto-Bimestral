@@ -1,0 +1,91 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "users",
+    "dateExported": "2024-03-09T05:47:20.699Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2720a7b7-e80f-4ec2-8d05-f8038baba93b",
+            "colId": "1ea2a198-526d-4fd8-a728-1bfd1612301a",
+            "containerId": "",
+            "name": "allUsers",
+            "url": "http://localhost:3000/gestionVentas/v1/users",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-04T22:52:41.953Z",
+            "modified": "2024-03-04T22:52:50.375Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c051648f-1b22-4360-95fa-800d8a3dfda4",
+            "colId": "1ea2a198-526d-4fd8-a728-1bfd1612301a",
+            "containerId": "",
+            "name": "editRol",
+            "url": "http://localhost:3000/gestionVentas/v1/users/65e7e83f52406067140d432f",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-03-04T23:02:25.287Z",
+            "modified": "2024-03-06T04:19:47.073Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": ""
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"role\": \"CLIENT_ROLEd\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "65443ccc-2252-4978-b062-4e47e9974d1d",
+            "colId": "1ea2a198-526d-4fd8-a728-1bfd1612301a",
+            "containerId": "",
+            "name": "editUser",
+            "url": "http://localhost:3000/gestionVentas/v1/users/65e7ee83b01296412f1b4fb0",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-03-05T00:29:08.990Z",
+            "modified": "2024-03-08T16:55:15.986Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU3ZTgzZjUyNDA2MDY3MTQwZDQzMmYiLCJpYXQiOjE3MDk5MTAzNDEsImV4cCI6MTcwOTkxMzk0MX0.pm1BLnTD3hHZrWkdFyvNCz-ImRoIspI8yH-Aw5ycBsY"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"2\",\n  \"lastName\": \"2\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "16407931-754c-4bfc-98d5-36ed773fbff8",
+            "colId": "1ea2a198-526d-4fd8-a728-1bfd1612301a",
+            "containerId": "",
+            "name": "deleteUsers",
+            "url": "http://localhost:3000/gestionVentas/v1/users/65e7e83f52406067140d432f",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-03-05T23:02:48.201Z",
+            "modified": "2024-03-06T04:19:12.253Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": ""
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

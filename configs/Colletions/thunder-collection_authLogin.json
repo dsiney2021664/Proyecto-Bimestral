@@ -1,0 +1,49 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "authLogin",
+    "dateExported": "2024-03-09T05:46:59.261Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "4310c8a2-8aea-47a5-ad2b-50093afdbd92",
+            "colId": "f8db2d43-5530-46ef-9323-38826ba93fca",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://localhost:3000/gestionVentas/v1/auth/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-16T05:07:14.635Z",
+            "modified": "2024-03-09T03:49:42.623Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"b@example.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "019d86b4-3b68-4788-9381-3211b9f1e003",
+            "colId": "f8db2d43-5530-46ef-9323-38826ba93fca",
+            "containerId": "",
+            "name": "registerUser",
+            "url": "http://localhost:3000/gestionVentas/v1/users",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-05T00:21:00.664Z",
+            "modified": "2024-03-09T00:17:38.798Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"b\",\n  \"lastName\": \"b\",\n  \"email\": \"b@example.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        }
+    ]
+}

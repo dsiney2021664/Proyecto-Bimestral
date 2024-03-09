@@ -1,0 +1,92 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Cart",
+    "dateExported": "2024-03-09T05:47:41.890Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "4ba2e21b-3f7a-42f9-914c-8440412715fb",
+            "colId": "8d31bdbe-33eb-4bcb-9c05-5d7b2c26c709",
+            "containerId": "",
+            "name": "createCart",
+            "url": "http://localhost:3000/gestionVentas/v1/cart",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-08T16:41:50.994Z",
+            "modified": "2024-03-09T05:14:13.957Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViYWFhMjg3OTY2N2E5OWJiODI5NmEiLCJpYXQiOjE3MDk5NjEyNDQsImV4cCI6MTcwOTk2NDg0NH0.7b-ObdKKBrganEBKSOcOEIL-Iy1stpKeOjEZz9BDNoI"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"userId\": \"65ebaaa2879667a99bb8296a\",\n    \"items\": [\n        {\n            \"product\": \"65eb192b72d0757d29054413\",\n            \"quantity\": 3\n        },\n         {\n            \"product\": \"65eb198d72d0757d2905442f\",\n            \"quantity\": 2\n        }\n    ]\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "0b94502f-5323-4c1e-a056-60b3f143709c",
+            "colId": "8d31bdbe-33eb-4bcb-9c05-5d7b2c26c709",
+            "containerId": "",
+            "name": "deleteCart",
+            "url": "http://localhost:3000/gestionVentas/v1/cart/65ebe46cb832c49e95468eb3",
+            "method": "DELETE",
+            "sortNum": 15000,
+            "created": "2024-03-09T04:20:36.184Z",
+            "modified": "2024-03-09T04:24:22.966Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViYWFhMjg3OTY2N2E5OWJiODI5NmEiLCJpYXQiOjE3MDk5NTgyMzAsImV4cCI6MTcwOTk2MTgzMH0.l8krp3oFiEeLdeMyDdyl-S3AayDBVLny3bNiZpZQSmw"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "45cdcb72-9a04-45c0-bd2a-b0c117da90dc",
+            "colId": "8d31bdbe-33eb-4bcb-9c05-5d7b2c26c709",
+            "containerId": "",
+            "name": "buyProducts",
+            "url": "http://localhost:3000/gestionVentas/v1/buy",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-09T03:29:14.604Z",
+            "modified": "2024-03-09T05:44:19.538Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViYWFhMjg3OTY2N2E5OWJiODI5NmEiLCJpYXQiOjE3MDk5NjEyNDQsImV4cCI6MTcwOTk2NDg0NH0.7b-ObdKKBrganEBKSOcOEIL-Iy1stpKeOjEZz9BDNoI"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userId\": \"65ebaaa2879667a99bb8296a\",\n  \"shoppingCartId\": \"65ebf72b0088d406902ea10f\",\n  \"total\": 50   \n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "56bb97d7-2dd1-4653-b3d6-bcf66e879387",
+            "colId": "8d31bdbe-33eb-4bcb-9c05-5d7b2c26c709",
+            "containerId": "",
+            "name": "getBill",
+            "url": "http://localhost:3000/gestionVentas/v1/bill/",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-03-09T05:20:56.431Z",
+            "modified": "2024-03-09T05:31:14.173Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
