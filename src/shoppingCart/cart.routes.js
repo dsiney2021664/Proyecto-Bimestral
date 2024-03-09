@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import {
     createShoppingCart,
+    deleteShoppingCart,
 } from "./cart.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -15,5 +16,10 @@ router.post("/", [
     validarCampos
 ], createShoppingCart);
 
+
+router.delete("/:cartId", [
+    validarJWT,
+    tieneRole('CLIENT_ROLE')
+], deleteShoppingCart);
 
 export default router;

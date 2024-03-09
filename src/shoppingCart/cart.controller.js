@@ -44,8 +44,9 @@ export const createShoppingCart = async (req, res) => {
 
                 await product.save();
 
+                // Solo guardar la identificación del producto en el carrito
                 return {
-                    product: product._id,
+                    product: product._id, // Almacenar solo la identificación del producto
                     quantity: item.quantity,
                     price: product.price
                 };
@@ -99,5 +100,23 @@ export const createShoppingCart = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error al crear o actualizar el carrito de compras' });
+    }
+};
+
+export const deleteShoppingCart = async (req, res) => {
+    const { cartId } = req.params;
+
+    try {
+        const shoppingCart = await ShoppingCart.findById(cartId);
+        if (!shoppingCart) {
+            return res.status(404).json({ message: 'El carrito de compras no existe' });
+        }
+
+        await ShoppingCart.findByIdAndDelete(cartId);
+
+        res.status(200).json({ message: 'Carrito de compras eliminado exitosamente' });
+    } catch (error) {
+        console.error('Error al eliminar el carrito de compras:', error);
+        res.status(500).json({ message: 'Error al eliminar el carrito de compras' });
     }
 };
