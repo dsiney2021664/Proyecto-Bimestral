@@ -31,7 +31,7 @@ export const getProduct = async (req = request, res = response) => {
 
 export const getProductOutOfStock = async (req = request, res = response) => {
     const { limite, desde } = req.query;
-    const query = { quantityInStock:0, state: true };
+    const query = { quantityInStock: 0, state: true };
 
     const [total, product] = await Promise.all([
         Product.countDocuments(query),
@@ -82,6 +82,73 @@ export const getMostSelledProducts = async (req = request, res = response) => {
         product: productsWithCategoryName,
     });
 }
+
+export const getProductByName = async (req, res) => {
+    const { name } = req.query;
+    const query = { state: true, name: { $regex: new RegExp(name, 'i') } };
+
+    try {
+        const [total, product] = await Promise.all([
+            Product.countDocuments(query),
+            Product.find(query)
+        ]);
+        const productsWithCategoryName = await Promise.all(product.map(async (product) => {
+            const category = await Category.findById(product.category);
+            const categoryName = category ? category.name : null;
+
+            return {
+                ...product.toJSON(),
+                category: categoryName
+            };
+        }));
+
+        res.status(200).json({
+            total,
+            product: productsWithCategoryName,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al obtener productos por nombre' });
+    }
+};
+
+export const getListProductsByCategory = async (req, res) => {
+    const { categoryId, limite, desde } = req.query;
+
+    try {
+        const category = await Category.findById(categoryId);
+
+        if (!category) {
+            return res.status(404).json({ message: 'La categoría no existe' });
+        }
+
+        const query = { category: categoryId, state: true };
+
+        const [total, product] = await Promise.all([
+            Product.countDocuments(query),
+            Product.find(query)
+                .skip(Number(desde))
+                .limit(Number(limite))
+        ]);
+
+        const productsWithCategoryName = await Promise.all(product.map(async (product) => {
+            return {
+                ...product.toJSON(),
+                category: category.name
+            };
+        }));
+
+        res.status(200).json({
+            total,
+            product: productsWithCategoryName,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al obtener los productos por categoría' });
+    }
+};
+
+
 
 
 export const createProduct = async (req, res) => {

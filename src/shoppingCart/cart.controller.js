@@ -6,57 +6,98 @@ export const createShoppingCart = async (req, res) => {
     const { userId, items } = req.body;
 
     try {
-        // Verificar si el usuario existe
-        const userExists = await User.findById(userId);
+        const user = await User.findById(userId);
 
-        if (!userExists) {
+        if (!user) {
             return res.status(404).json({ message: 'El usuario no existe' });
         }
 
-        // Verificar si los productos existen y calcular el precio total
-        let totalPrice = 0;
-        const cartItems = await Promise.all(items.map(async (item) => {
-            const product = await Product.findById(item.product);
-            if (!product) {
-                return res.status(404).json({ message: `El producto con ID ${item.product} no existe` });
+        let shoppingCart = await ShoppingCart.findOne({ user: userId });
+
+        if (!shoppingCart) {
+            let totalPrice = 0;
+
+            const cartItems = await Promise.all(items.map(async (item) => {
+                const product = await Product.findById(item.product);
+                if (!product) {
+                    return res.status(400).json({
+                        msg: `El producto con ID ${item.product} no existe`
+                    });
+                }
+
+                if (product.quantityInStock < item.quantity) {
+                    return res.status(400).json({
+                        msg: `No hay suficientes unidades de ${product.name} en el stock`
+                    });
+                }
+
+                const itemTotalPrice = product.price * item.quantity;
+                totalPrice += itemTotalPrice;
+
+                product.quantityInStock -= item.quantity;
+
+                if (product.quantityInStock === -1) {
+                    return res.status(400).json({
+                        msg: `Ya no hay más unidades de ${product.name} en el stock`
+                    });
+                }
+
+                await product.save();
+
+                return {
+                    product: product._id,
+                    quantity: item.quantity,
+                    price: product.price
+                };
+            }));
+
+            shoppingCart = new ShoppingCart({
+                user: userId,
+                items: cartItems,
+                totalPrice: totalPrice
+            });
+        } else {
+            for (const item of items) {
+                const product = await Product.findById(item.product);
+                if (!product) {
+                    return res.status(404).json({ message: `El producto con ID ${item.product} no existe` });
+                }
+
+                if (product.quantityInStock < item.quantity) {
+                    return res.status(400).json({
+                        msg: `No hay suficientes unidades de ${product.name} en el stock`
+                    });
+                }
+
+                const existingItemIndex = shoppingCart.items.findIndex(cartItem => cartItem.product.id === item.product);
+                if (existingItemIndex !== -1) {
+                    shoppingCart.items[existingItemIndex].quantity += item.quantity;
+                } else {
+                    shoppingCart.items.push({
+                        product: product._id,
+                        quantity: item.quantity,
+                        price: product.price
+                    });
+                }
+                shoppingCart.totalPrice += product.price * item.quantity;
+
+                product.quantityInStock -= item.quantity;
+
+                if (product.quantityInStock === -1) {
+                    return res.status(400).json({
+                        msg: `Ya no hay más unidades de ${product.name} en el stock`
+                    });
+                }
+
+                await product.save();
             }
-            const itemTotalPrice = product.price * item.quantity;
-            totalPrice += itemTotalPrice;
-            return {
-                product: item.product,
-                quantity: item.quantity,
-                price: product.price
-            };
-        }));
+        }
 
-        // Crear el carrito de compras
-        const shoppingCart = new ShoppingCart({
-            user: userId,
-            items: cartItems,
-            totalPrice: totalPrice
-        });
-
-        // Guardar el carrito en la base de datos
         await shoppingCart.save();
 
-        res.status(201).json({ message: 'Carrito de compras creado exitosamente', shoppingCart });
+        res.status(201).json({ message: 'Carrito de compras creado o actualizado exitosamente', shoppingCart });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error al crear el carrito de compras' });
-    }
-};
-
-export const getShoppingCartById = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const shoppingCart = await ShoppingCart.findById(id).populate('items.product');
-        if (!shoppingCart) {
-            return res.status(404).json({ message: 'Carrito de compras no encontrado' });
-        }
-        res.status(200).json({ shoppingCart });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al obtener el carrito de compras' });
+        res.status(500).json({ message: 'Error al crear o actualizar el carrito de compras' });
     }
 };

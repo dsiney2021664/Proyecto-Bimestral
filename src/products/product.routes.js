@@ -4,6 +4,8 @@ import {
     getProduct,
     getProductOutOfStock,
     getMostSelledProducts,
+    getProductByName,
+    getListProductsByCategory,
     createProduct,
     getProductById,
     updateProduct,
@@ -29,6 +31,14 @@ router.get("/outOfStock", [
 router.get("/mostSelledProducts", [
     validarCampos
 ], getMostSelledProducts);
+
+router.get("/productByName", [
+    validarCampos
+], getProductByName);
+
+router.get("/listProductsByCategory", [
+    validarCampos
+], getListProductsByCategory);
 
 router.post("/", [
     validarJWT,
